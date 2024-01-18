@@ -1,0 +1,176 @@
+
+
+
+/* ————————————————————————————— Type Sizes ————————————————————————————— */
+
+
+:root {
+    --mightymelt: 12px;
+    --6inch: 16px;
+    --footlong: 32px;
+    --partysub: 48px;
+}
+
+
+/* ————————————————————————————— Colours ———————————————————————————————— */
+
+:root {
+     --lettuce:#009743;
+     --mustard:#ffcb0a;
+     --mayo:#fff;
+     --blackolive:#000;
+ }
+
+
+ /* —————————————————————————— General Styling —————————————————————————— */
+
+
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+body {
+    background-color: var(--lettuce);
+    text-decoration: none;
+}
+
+p, h1, h2, h3, h4, h5, a, button {
+    color: var(--blackolive);
+    letter-spacing: 1px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: left;
+    font-weight: 500;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+
+/* ————————————————————————————— Desktop Classes ————————————————————————————— */
+
+
+/* Main Content Container */
+.bread {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    padding-top:48px;
+}
+
+
+/* Text and Images */
+.coverImage {
+    width: 50%;
+}
+
+.fontLong {
+    color: var(--mustard);
+    font-size: var(--footlong);
+    width: 50%;
+} 
+
+
+/* Homepage Buttons */
+.buttonList {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 16px;
+
+    padding-bottom: 48px;
+}
+
+.CTA {
+    background-color: var(--mayo);
+    color: var(--lettuce);
+    font-size: var(--6inch);
+    text-align: center;
+    flex: 50%;
+
+    text-decoration: none;
+    padding: 16px;
+}
+
+.CTA:hover {
+    background-color: var(--mustard);
+    color: var(--mayo);
+}
+
+
+/* Spotify Player */
+
+.spotifyPlayer {
+    width: 50%;
+}
+
+
+
+/* Meme Grid */
+.memeList {
+    width: 50%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    row-gap: 2%;
+}
+
+.memeImage {
+    width: 100px;
+    flex-basis: 50%;
+    border: 4px solid var(--lettuce);
+}
+
+
+/* Copyright Text */
+.copyright {
+    color: var(--mayo);
+    font-size: var(--6inch);
+    width: 50%;
+    text-align: center;
+    opacity: 0.5;
+    padding: 48px 0px 24px 0px;
+} 
+
+
+/* ————————————————————————————— Mobile Classes ————————————————————————————— */
+
+@media screen and (max-width:800px){
+
+    .coverImage {
+    width: 80%;
+    }
+
+    .fontLong {
+    width: 80%;
+    } 
+
+    .buttonList {
+    width: 80%;
+    }
+
+    .spotifyPlayer {
+    width: 80%;
+    }
+
+    .memeList {
+    width: 80%;
+    }
+
+    .memeImage {
+    border: 2px solid var(--lettuce);
+    }
+
+}
+
+
+
+
+
+
+
