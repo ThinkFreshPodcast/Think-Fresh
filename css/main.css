@@ -110,6 +110,22 @@ p, h1, h2, h3, h4, h5, a, button {
 }
 
 
+/* Merch Grid */
+.merchList {
+    width: 33%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    row-gap: 2%;
+}
+
+.merchImage {
+    width: 100px;
+    flex-basis: 33%;
+    border: 4px solid var(--lettuce);
+}
+
+
 
 /* Meme Grid */
 .memeList {
