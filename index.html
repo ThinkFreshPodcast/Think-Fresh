@@ -1,61 +1,239 @@
 <!DOCTYPE html>
-
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Think Fresh Podcast</title>
-<link href="css/main.css" rel="stylesheet" type="text/css" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<!-- <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> -->
-</head>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Think Fresh Podcast</title>
+    <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+        }
 
-<body class="bread">
+        #panorama {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-        <!-- Introduction -->        
-        <img class="coverImage" src="images/coverphoto.png" alt="Cover Art" width="100%">
-        <p class="fontLong">Think Fresh is the only podcast in the world dedicated (mostly) to Subway, and it is exactly what you're craving right now. The charming and culturally tapped-in co-hosts go deep on the sandwich institution’s brand, business, clientele and quirks. This lo-fi, highly captivating talk show is guaranteed to fill you up with 12 inches of inspiration, twice a week. <p>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 12px;
+            padding: 12px;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 464px;
+        }
 
-        <!-- CTAs -->        
-        <p class="fontLong">Listen to Think Fresh on:<p>
-        <div class="buttonList">
-                <a class="CTA" href="https://podcasts.apple.com/ca/podcast/think-fresh/id1524535322">Apple Music</a>  
-                <a class="CTA" href="https://open.spotify.com/show/73Mh4Grqg7e5VmO4a3o70E?si=679eaae35f334927">Spotify</a>
-        </div>  
+        .card {
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-        <!-- Spotify Player -->
-        <p class="fontLong">Freshly Toasted:</p>
-        <div class="spotifyPlayer">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/73Mh4Grqg7e5VmO4a3o70E?utm_source=generator&theme=0&t=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        .card img {
+            width: 100px;
+            border-radius: 8px;
+        }
+
+        .content h2, .content p {
+            margin: 0;
+            color: #000;
+            font-weight: 400;
+        }
+
+        .content h2 {
+            font-size: 16px;
+        }
+
+        .content p {
+            margin: 12px 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .links a, .discounts a {
+            color: #000;
+            margin-right: 16px;
+            font-size: 16px;
+            text-decoration: underline;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover, .discounts a:hover {
+            text-decoration: none;
+        }
+
+        .card2, .card3 {
+            position: relative;
+        }
+
+       .discounts {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        /* CSS for hidden content and expand/collapse functionality */
+        .expand-collapse {
+            display: none;
+            margin-left: 8px;
+            cursor: pointer;
+            color: #000;
+            text-decoration: underline;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                width: 96%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .expand-collapse {
+                display: inline;
+                float: right; /* Align to the right */
+            }
+
+            .content p {
+                margin: 12px 0px;
+                font-size: 16px;
+                line-height: 1.4;
+                padding-right: 20px; /* Provide space for the 'Expand' link */
+            }
+
+            .hidden-content {
+                display: none; /* Hidden by default on mobile */
+            }
+
+            .card2.expanded .hidden-content,
+            .card3.expanded .hidden-content {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+            }
+
+            .card {
+                padding: 12px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hidden-content {
+                display: block; /* Visible by default on desktop */
+            }
+
+            .expand-collapse {
+                display: none; /* Hide on desktop */
+            }
+
+            .content p {
+                margin: 12px 0px;
+                font-size: 16px;
+                line-height: 1.4;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Panorama Viewer -->
+    <div id="panorama"></div>
+
+    <!-- Container for cards -->
+    <div class="container">
+        <!-- Info Card 1 -->
+        <div class="card card1">
+            <img src="images/HotTrash.png" alt="Think Fresh Podcast Cover">
+            <div class="content">
+                <h2>Think Fresh Podcast</h2>
+                <p>A podcast dedicated mostly to Subway is exactly what you need right now. The charming and culturally tapped-in co-hosts go deep on the sandwich institution's brand, business, clientele and quirks. This lo-fi, highly captivating talk show is guaranteed to fill you up with 12 inches of inspiration, twice a week.</p>
+                <div class="links">
+                    <a href="https://www.instagram.com/thinkfreshpodcast/?hl=en">Instagram</a>
+                    <a href="https://shop.thinkfreshpodcast.com">Shop Merch</a>
+                    <a href="mailto:thinkfreshpodcast.com">Email Us</a>
+                </div>
+            </div>
         </div>
 
-        <!-- Merch -->
-        <p class="fontLong" style="margin-top:50px">Eating Good, Looking Better:</p>
-                <div class="memeList">
-                        <img class="memeImage" src="images/merch1.png" alt="Merch Image">
-                        <img class="memeImage" src="images/merch2.png" alt="Merch Image">
-                        <img class="memeImage" src="images/merch3.png" alt="Merch Image">
-                        <img class="memeImage" src="images/merch4.png" alt="Merch Image">
+        <!-- Info Card 2 (Platform Links) -->
+        <div class="card card2">
+            <div class="content">
+                <p>Available <i>exclusively</i> on these platforms <a href="#" class="expand-collapse" onclick="toggleCard('card2')">Expand</a></p>
+                <div class="hidden-content">
+                    <div class="links" style="margin-top: 12px">
+                        <a href="https://podcasts.apple.com/ca/podcast/think-fresh/id1524535322">Apple Podcasts</a>
+                        <a href="https://open.spotify.com/show/73Mh4Grqg7e5VmO4a3o70E?si=7910a499f1154e2c">Spotify</a>
+                    </div>
                 </div>
-        <a class="CTA" style="padding:16px 48px;" href="https://shop.thinkfreshpodcast.com/">Shop Merch</a> 
+            </div>
+        </div>
 
-        <!-- Instagram Feed -->
-        <p class="fontLong" style="margin-top:50px">Great Podcast, Better Memes:</p>
-                <div class="memeList">
-                        <img class="memeImage" src="images/Social1.jpg" alt="Social Post">
-                        <img class="memeImage" src="images/Social2.jpg" alt="Social Post">
-                        <img class="memeImage" src="images/Social3.jpg" alt="Social Post">
-                        <img class="memeImage" src="images/Social4.jpg" alt="Social Post">
+        <!-- Info Card 3 (Discount Links) -->
+        <div class="card card3">
+            <div class="content">
+                <p>Discount Codes <a href="#" class="expand-collapse" onclick="toggleCard('card3')">Expand</a></p>
+                <div class="hidden-content">
+                    <div class="discounts">
+                        <h2>10% off TF Merch</h2>
+                        <a href="https://shop.thinkfreshpodcast.com">BREADHEAD</a>
+                    </div>
+                    <div class="discounts">
+                        <h2>30% off Zencastr Pro</h2>
+                        <a href="https://zencastr.com/pricing?coupon=thinkfresh&promoCode=thinkfresh&utm_source=zencastr&utm_medium=podcast&utm_campaign=Zencastr+All-In-One+Campaign&utm_id=%7B+_id%3A+631018d370deee2bb74499a7%2C+kevelCampaignId%3A+98719982+%7D&utm_content=64235e4e88c266bd57a26212">THINKFRESH</a>
+                    </div>
                 </div>
-        <a class="CTA" style="padding:16px 48px;" href="https://www.instagram.com/thinkfreshpodcast/?hl=en">View Instagram</a> 
+            </div>
+        </div>
+    </div>
 
-        <!-- Zencastr Promo -->
-        <p class="fontLong" style="margin-top:24px">TF x Zencastr </p>
-        <p class="fontLong" style="font-size: var(--6inch)">Want to make a podcast slightly worse than this one? Think Fresh has teamed up with Zencastr to get you 30% off a Zencastr professional account.</p>
-        <a class="CTA" style="padding:16px 48px;" href="https://zencastr.com/pricing?coupon=thinkfresh&promoCode=thinkfresh&utm_source=zencastr&utm_medium=podcast&utm_campaign=Zencastr+All-In-One+Campaign&utm_id=%7B+_id%3A+631018d370deee2bb74499a7%2C+kevelCampaignId%3A+98719982+%7D&utm_content=64235e4e88c266bd57a26212">Get Zencastr Code</a> 
+    <script>
+        pannellum.viewer('panorama', {
+            type: 'equirectangular',
+            panorama: 'https://lh5.googleusercontent.com/p/AF1QipPq1RurgBVhxbHYmPDdixYeTvbaOWXTvjOMCIVe\u003dw1400-h927-k-no-pi1.446404-ya357.52655-ro-1.0382234-fo100',
+            autoLoad: true,
+            showControls: false,
+            pitch: -15, // Adjust if needed
+            yaw: -60,   // Adjust if needed
+            hfov: 100  // Set the horizontal field of view
+        });
 
-
-        <!-- Footer -->
-         <p class="copyright">©2024 Think Fresh Podcast<p>
+        function toggleCard(cardClass) {
+            var card = document.querySelector('.' + cardClass + ' .hidden-content');
+            var link = document.querySelector('.' + cardClass + ' .expand-collapse');
+            if (card.style.display === 'none' || card.style.display === '') {
+                card.style.display = 'block';
+                link.textContent = 'Collapse';
+            } else {
+                card.style.display = 'none';
+                link.textContent = 'Expand';
+            }
+        }
+    </script>
 </body>
 </html>
