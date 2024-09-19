@@ -60,6 +60,7 @@
 
         .content h2 {
             font-size: 16px;
+            margin-bottom: 12px;
         }
 
         .content p {
@@ -70,7 +71,6 @@
 
         .links a, .discounts a {
             color: #000;
-            margin-right: 16px;
             font-size: 13px;
             text-decoration: underline;
             transition: all 0.3s ease;
@@ -111,6 +111,10 @@
                 padding: 16px;
             }
 
+            .card-header {
+                margin-bottom: 0px;
+            }
+
             .expand-collapse {
                 display: inline;
                 float: right; /* Align to the right */
@@ -129,6 +133,7 @@
             .card2.expanded .hidden-content,
             .card3.expanded .hidden-content {
                 display: block;
+                margin-top: 8px;
             }
         }
 
@@ -186,7 +191,7 @@
         <!-- Info Card 2 (Platform Links) -->
         <div class="card card2">
             <div class="content">
-                <p>Available Platforms <a href="#" class="expand-collapse" onclick="toggleCard('card2')">Show</a></p>
+                <p class="card-header">Available Platforms <a href="#" class="expand-collapse" onclick="toggleCard('card2')">Show</a></p>
                 <div class="hidden-content">
                     <div class="links">
                         <a href="https://podcasts.apple.com/ca/podcast/think-fresh/id1524535322" target="_blank">Apple Podcasts</a>
@@ -199,7 +204,7 @@
         <!-- Info Card 3 (Discount Links) -->
         <div class="card card3">
             <div class="content">
-                <p>Discount Codes <a href="#" class="expand-collapse" onclick="toggleCard('card3')">Show</a></p>
+                <p class="card-header">Discount Codes <a href="#" class="expand-collapse" onclick="toggleCard('card3')">Show</a></p>
                 <div class="hidden-content">
                     <div class="discounts">
                         <h2>10% off Think Fresh Merch</h2>
